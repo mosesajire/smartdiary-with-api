@@ -9,9 +9,6 @@
 
     <title>{{ config('app.name', 'SmartDiary') }} - @yield('title')</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -77,5 +74,8 @@
             <p>Thank you for using {{ config('app.name', 'SmartDiary') }} </p>
         </footer>
     </div>
+
+     <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

@@ -36,4 +36,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // Establish relationship between user model and activity model
+    public function entries()
+    {
+        return $this->hasMany('App\Entry');
+    }
 }

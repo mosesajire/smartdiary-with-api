@@ -50,7 +50,7 @@
                             <li class="nav-item"><a href="/entries/create" class="nav-link">Add New Entry</a></li>
                             <li class="nav-item"><a href="/profiles" class="nav-link">Your Profile</a></li>
                             <form action="/logout" method="post">
-                                <input type="submit" name="submit" value="Logout" class="btn btn-default">
+                                <input type="submit" name="submit" value="Logout" class="btn btn-outline-secondary">
                                 @csrf
                             </form>
 

@@ -3,7 +3,7 @@
 @section('title', 'View Entry')
 
 @section('content')
-	<p><a href="/entries/create" class="btn btn-primary">Add New Entry</a> <a href="/entries" class="btn btn-warning">View All Entries</a></p>
+	<p><a href="/entries/create" class="btn btn-primary">Add New Entry</a> <a href="/entries" class="btn btn-secondary">View All Entries</a></p>
 
 	<div class="card">
 		<div class="card-header">

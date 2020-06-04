@@ -18,7 +18,7 @@ Route::post('login', 'Api/UserController@login');
 
 Route::post('register', 'Api/UserController@register');
 
-Route::group(['middleware' => 'auth:api', 'prefix' => 'api', 'namespace' => 'Api'], function () {
+Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function () {
 
 	Route::get('user', 'UserController@details');
 	Route::resource('entries', 'EntryController');

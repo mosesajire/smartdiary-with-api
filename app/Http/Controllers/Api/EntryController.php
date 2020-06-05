@@ -92,7 +92,7 @@ class EntryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ApiEntryFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $entry = auth()->user()->entries->find($id);
 

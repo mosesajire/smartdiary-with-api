@@ -18,14 +18,17 @@ class PagesTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
+
+        $response->assertSee('SmartDiary');
     }
     
-    // Test login page
+    // Test login page 
     public function testLoginPage()
     {
         $response = $this->get('/login');
         $response->assertSuccessful();
         $response->assertViewIs('auth.login');
+        $response->assertSee('Login');
     }
 
     // Test registration page
@@ -34,6 +37,7 @@ class PagesTest extends TestCase
         $response = $this->get('/register');
         $response->assertSuccessful();
         $response->assertViewIs('auth.register');
+        $response->assertSee('Register');
     }
 
     // Only authenticated users can access the entries endpoint

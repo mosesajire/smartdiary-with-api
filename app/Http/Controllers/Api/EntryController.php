@@ -148,7 +148,7 @@ class EntryController extends Controller
                 return response()->json([
                         'success' => true,
                         'message' => 'Entry deleted successfully'
-                    ], 204);
+                    ], 200);
             }
             else
             {

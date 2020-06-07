@@ -40,10 +40,24 @@ class PagesTest extends TestCase
         $response->assertSee('Register');
     }
 
-    // Only authenticated users can access the entries endpoint
+    // Only authenticated users can access the entries page
     public function testEntryPage() 
     {
         $response = $this->get('/entries');
+        $response->assertRedirect('login');
+    }
+
+    // Only authenticated users can access the dashboard page
+    public function testDashboardPage() 
+    {
+        $response = $this->get('/dashboard');
+        $response->assertRedirect('login');
+    }
+
+    // Only authenticated users can access the profile page
+    public function testProfilePage() 
+    {
+        $response = $this->get('/profiles');
         $response->assertRedirect('login');
     }
 }

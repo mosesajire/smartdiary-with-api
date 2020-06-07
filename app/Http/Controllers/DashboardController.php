@@ -25,10 +25,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        // Get the id of user
         $user_id = auth()->user()->id;
 
+        // Get total number of entries for the user
         $getCount = Entry::where('user_id', $user_id)->count();
 
+        // Go to the dashboard view
         return view('dashboard', compact('getCount'));
     }
 }

@@ -19,21 +19,24 @@ class PagesTest extends TestCase
 
         $response->assertStatus(200);
     }
-
+    
+    // Test login page
     public function testLoginPage()
     {
-        $response = $this->get(route('login'));
-        // $response->assertSuccessful();
+        $response = $this->get('/login');
+        $response->assertSuccessful();
         $response->assertViewIs('auth.login');
     }
 
+    // Test registration page
     public function testRegisterPage()
     {
-        $response = $this->get(route('register'));
-        // $response->assertSuccessful();
+        $response = $this->get('/register');
+        $response->assertSuccessful();
         $response->assertViewIs('auth.register');
     }
 
+    // Only authenticated users can access the entries endpoint
     public function testEntryPage() 
     {
         $response = $this->get('/entries');

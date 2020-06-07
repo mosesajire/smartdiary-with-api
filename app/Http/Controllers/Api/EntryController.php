@@ -45,7 +45,8 @@ class EntryController extends Controller
         {
             return response()->json([
                     'success' => true,
-                    'message' => 'Entry created successfully'
+                    'message' => 'Entry created successfully',
+                    'data' => $entry
                 ], 201);
         }
         else
@@ -111,7 +112,8 @@ class EntryController extends Controller
             {
                 return response()->json([
                         'success' => true,
-                        'message' => 'Entry updated successfully.'
+                        'message' => 'Entry updated successfully.',
+                        'data' => $entry
                     ], 200);
             }
             else

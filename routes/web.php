@@ -25,7 +25,7 @@ Route::group(['middleware' => 'auth'], function() {
 	// Dashboard
 	Route::get('/dashboard', 'DashboardController@index');
 
-	// Activities
+	// Entries
 	Route::resource('entries', 'EntryController');
 
 	// Profile

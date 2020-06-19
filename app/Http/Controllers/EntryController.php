@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EntryFormRequest;
 
 use App\Entry;
-use App\User;
 
 class EntryController extends Controller
 {
@@ -18,17 +17,17 @@ class EntryController extends Controller
      */
     public function index()
     {
-        // User access only their entries only
+        // Get id of user: User can access only their entries
         $user_id = auth()->user()->id;
 
-        // Old entries
+        // Old entries: display ten results per page 
         if(isset($_GET['sort']) && $_GET['sort'] == "asc")
         {
             $entries = Entry::where('user_id', $user_id)->orderBy('id', 'asc')->paginate(10);
         }
         else
         {
-            // Recent entries
+        // Recent entries: display ten results per page
             $entries = Entry::where('user_id', $user_id)->orderBy('id', 'desc')->paginate(10);
         }
 
@@ -53,15 +52,20 @@ class EntryController extends Controller
      */
     public function store(EntryFormRequest $request)
     {
+        // Get the id of the user
         $user_id = auth()->user()->id;
 
+        // Create a new object
         $entry = new Entry;
 
+        // Retrieve user's input
         $entry->body = $request->input('body');
         $entry->user_id = $user_id;
 
+        // Save user's input
         $entry->save();
 
+        // Redirect to the entries page
         return redirect('/entries')->with('success', 'You have created a new entry successfully.');
 
     }
@@ -74,14 +78,19 @@ class EntryController extends Controller
      */
     public function show($id)
     {
-        if(Entry::find($id))
+        // Get id of user: User can access only their entries
+        $user_id = auth()->user()->id;
+
+        // Confirm that the entry exists
+        if(Entry::where('id', $id)->where('user_id', $user_id)->first())
         {
-            $entry = Entry::find($id);
+            $entry = Entry::where('id', $id)->where('user_id', $user_id)->first();
 
             return view('entries.show', compact('entry'));
         }
-        else
+        else 
         {
+            // If the entry does not exist, display error message
             return redirect()->back()->with('error', 'Sorry, something went wrong. We could not find that entry.');
         }
     }
@@ -94,14 +103,19 @@ class EntryController extends Controller
      */
     public function edit($id)
     {
-        if(Entry::find($id))
+        // Get id of user: User can access only their entries
+        $user_id = auth()->user()->id;
+
+        // Confirm that the entry exists
+        if(Entry::where('id', $id)->where('user_id', $user_id)->first())
         {
-            $entry = Entry::find($id);
+            $entry = Entry::where('id', $id)->where('user_id', $user_id)->first();
 
             return view('entries.edit', compact('entry'));
         }
-        else
+        else 
         {
+            // If the entry does not exist, display error message
             return redirect()->back()->with('error', 'Sorry, something went wrong. We could not find that entry.');
         }
     }
@@ -115,6 +129,7 @@ class EntryController extends Controller
      */
     public function update(EntryFormRequest $request, $id)
     {
+        // Confirm that the entry exists
         if(Entry::find($id))
         {
             $entry = Entry::find($id);
@@ -122,18 +137,22 @@ class EntryController extends Controller
             // User can edit only their own entries
             if($entry->user_id == auth()->user()->id)
             {
+
                 $entry->body = is_null($request->input('body')) ? $entry->body : $request->input('body');
+
                 $entry->save();
 
                 return redirect('/entries')->with('success', 'You have updated an entry successfully.');
             }
-            else
+            else 
             {
+                // If entry author is not the current user, display error
                 return redirect()->back()->with('error', 'Sorry, something went wrong. Access denied.');
             }
         }
-        else
+        else 
         {
+            // If the entry does not exist, display error message
             return redirect()->back()->with('error', 'Sorry, something went wrong. We could not find that entry.');
         }
     }
@@ -146,8 +165,8 @@ class EntryController extends Controller
      */
     public function destroy($id)
     {
-          if(Entry::find($id))
-            {
+        if(Entry::find($id))
+        {
             $entry = Entry::find($id);
 
             // User can delete only their own entries

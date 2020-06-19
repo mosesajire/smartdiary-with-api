@@ -39,7 +39,7 @@ class User extends Authenticatable
     ];
 
 
-    // Establish relationship between user model and activity model
+    // Establish relationship between user model and entry model
     public function entries()
     {
         return $this->hasMany('App\Entry');

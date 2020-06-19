@@ -9,7 +9,7 @@
 			<h1>Edit Entry</h1>
 		</div>
 		<div class="card-body">
-			<!-- Include file for messages/notifications -->
+			{{-- Include file for messages/notifications --}}
 			@include('includes.messages')
 
 			@if(isset($entry))
@@ -26,7 +26,7 @@
 					<input type="submit" name="submit" value="UPDATE ENTRY" class="btn btn-success">
 				</form>
 			@else
-				<p>Sorry, somethin went wrong. Please try again.</p>
+				<p>Sorry, something went wrong. Please try again.</p>
 			@endif
 		</div>
 	</div>

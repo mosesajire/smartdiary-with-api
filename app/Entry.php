@@ -8,7 +8,7 @@ class Entry extends Model
 {
     protected $fillable = ['body'];
 
-     // Establish relationship between user model and activity model
+     // Establish relationship between user model and entry model
     public function user()
     {
     	return $this->belongsTo('App\User');

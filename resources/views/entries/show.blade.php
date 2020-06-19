@@ -3,7 +3,10 @@
 @section('title', 'View Entry')
 
 @section('content')
-	<p><a href="/entries/create" class="btn btn-primary">Add New Entry</a> <a href="/entries" class="btn btn-secondary">View All Entries</a></p>
+	<p>
+		<a href="/entries/create" class="btn btn-primary">Add New Entry</a>
+		<a href="/entries" class="btn btn-secondary">View All Entries</a>
+	</p>
 
 	<div class="card">
 		<div class="card-header">
@@ -26,8 +29,8 @@
 					<td>
 					{{-- Add a delete form --}}
 						<form action="/entries/{{$entry->id}}" method="post">
+							@csrf
 							<input type="hidden" name="_method" value="DELETE">
-							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<input type="submit" name="submit" value="Delete" class="btn btn-danger" onclick="return confirm('You are about to delete an entry. Click OK to continue')">
 						</form>
 					</td>

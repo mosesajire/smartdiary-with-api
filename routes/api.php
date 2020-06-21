@@ -14,17 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route for user login
 Route::post('login', 'Api\UserController@login');
 
+// Route for registering new user
 Route::post('register', 'Api\UserController@register');
 
+// Access to these routes require authentication
 Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function () {
 
+	// Route for fetching user details
 	Route::get('user', 'UserController@details');
+
+	// Route for managing entries
 	Route::resource('entries', 'EntryController');
 	
 });
-
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });

@@ -10,8 +10,6 @@ use App\Http\Requests\ApiRegisterFormRequest;
 
 use App\User;
 
-use Validator;
-
 class UserController extends Controller
 {
 	// Register new user 

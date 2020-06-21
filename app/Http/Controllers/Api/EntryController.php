@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests\ApiEntryFormRequest;
-
-use App\User;
 
 use App\Entry;
 
@@ -21,6 +20,7 @@ class EntryController extends Controller
     public function index()
     {
         $entries = auth()->user()->entries;
+
         return response()->json(
             [
                 'success' => true,
@@ -73,7 +73,7 @@ class EntryController extends Controller
             return response()->json(
                 [
                     'success' => true,
-                    'data' => $entry->toArray()
+                    'data' => $entry
                 ], 200);
         }
         else

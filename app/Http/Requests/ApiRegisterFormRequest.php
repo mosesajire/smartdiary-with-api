@@ -13,6 +13,8 @@ class ApiRegisterFormRequest extends FormRequest
      */
     public function authorize()
     {
+        // Ensure that this returns true
+        
         return true;
     }
 

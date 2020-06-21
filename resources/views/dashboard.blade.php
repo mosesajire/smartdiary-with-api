@@ -4,24 +4,43 @@
 
 @section('content')
 
+    {{-- Display total number of entries --}}
+
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Total Entries</h5>
+                </div>
+
+                <div class="card-body">
+                    <h3 class="text-success text-center">
+                    Your total number of entries is
+                        @if(isset($getCount)) 
+                            {{ $getCount }}. 
+                        @endif
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        {{-- Display some quick links --}}
+
+        <div class="col-md-3">
             <div class="card">
                 <div class="card-header">
                     <h5>Quick Links</h5>
                 </div>
                 <div class="card-body">
-                    <h5 class="text-success">Total Entries: @if(isset($getCount)) {{ $getCount }} @endif</h5>
-                    <hr>
                     <p>&raquo; <a href="/entries/create"> Add New Entry</a></p>
                     <p>&raquo; <a href="/profiles"> Update Profile</a></p>
-
-
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
+        {{-- Link to Recent Entries --}}
+
+        <div class="col-md-3">
             <div class="card">
                 <div class="card-header">
                     <h5>Recent Entries</h5>
@@ -33,7 +52,8 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        {{-- Link to old entries --}}
+        <div class="col-md-3">
             <div class="card">
                 <div class="card-header">
                     <h5>Old Entries</h5>
@@ -44,6 +64,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 
 @endsection

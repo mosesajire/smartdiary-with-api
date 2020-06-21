@@ -30,8 +30,10 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
+        // Confirm that the user exists.
         if(User::find($id))
         {
+            // A user can view only their own profile information
             if(auth()->user()->id == $id)
             {
                 $user = User::find($id);
@@ -41,11 +43,14 @@ class ProfileController extends Controller
             }
             else
             {
+                // Redirect to dashboard and display error if a user tries to access another user's profile information.
+
                 return redirect('/dashboard')->with('error', 'Sorry, something went wrong. Access denied!');
             }
         }
         else
         {
+            // Display error messag if the user does not exist
             return redirect('/dashboard')->with('error', 'Sorry, something went wrong. Please try again.');
         }
     }
@@ -58,14 +63,15 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
+        // Confirm that the user exists.
         if(User::find($id))
         {
+            // Verify user
             if(auth()->user()->id == $id)
             {
                 $user = User::find($id);
 
                 return view('profiles.edit')->with('user', $user);
-
             }
             else
             {
@@ -74,6 +80,7 @@ class ProfileController extends Controller
         }
         else
         {
+            // If the user does not exist, display error message
             return redirect('/dashboard')->with('error', 'Sorry, something went wrong. Please try again.');
         }
     }
@@ -87,8 +94,10 @@ class ProfileController extends Controller
      */
     public function update(ProfileFormRequest $request, $id)
     {
+        // Confirm that the user exists
         if(User::find($id))
         {
+            // Verify user
             if(auth()->user()->id == $id)
             {
                 $user = auth()->user();
@@ -110,15 +119,16 @@ class ProfileController extends Controller
 
                 $user->name = $request->input('name');
 
+                // Update the password if the password field is not empty
                 if(!is_null($request->input('password')))
                 {
+                    // Encrypt the password before saving
                     $user->password = bcrypt($request->password);
                 }
 
                 $user->save();
 
                 return redirect('/profiles/' . $id)->with('success', 'You have updated your profile successfully.');
-
             }
             else
             {

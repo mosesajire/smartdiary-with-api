@@ -24,7 +24,7 @@ Route::post('register', 'Api\UserController@register');
 Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function () {
 
 	// Route for fetching user details
-	Route::get('user', 'UserController@details');
+	Route::get('details', 'UserController@details');
 
 	// Route for managing entries
 	Route::resource('entries', 'EntryController');
